@@ -3,8 +3,8 @@ import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
 
 export const metadata: Metadata = {
-  title: 'Calculateur de Notes',
-  description: 'Calculez vos notes pondérées facilement.',
+  title: 'Simulateur de Notes de Concours',
+  description: 'Estimez votre score et préparez-vous pour le succès.',
 };
 
 export default function RootLayout({

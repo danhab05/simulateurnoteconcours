@@ -8,10 +8,10 @@ export default function Home() {
       <main className="container mx-auto p-4 sm:p-6 lg:p-8">
         <header className="text-center mb-10">
           <h1 className="text-4xl md:text-5xl font-headline font-black text-primary animate-fade-in-down">
-            Calculateur de Notes
+            Simulateur de Notes de Concours
           </h1>
           <p className="mt-2 text-lg text-muted-foreground max-w-2xl mx-auto animate-fade-in-up">
-            Calculez sans effort vos notes pondérées pour les concours.
+            Estimez votre score et préparez-vous pour le succès.
           </p>
         </header>
 
