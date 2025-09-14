@@ -20,13 +20,13 @@ export default function Home() {
           <div className="w-full max-w-3xl">
             <Tabs defaultValue="mines-pont">
               <TabsList className="grid w-full grid-cols-2">
-                <TabsTrigger value="mines-pont">Mines Pont</TabsTrigger>
+                <TabsTrigger value="mines-pont">Concours Commun Mines Ponts</TabsTrigger>
                 <TabsTrigger value="concours-centrale">Concours Centrale</TabsTrigger>
               </TabsList>
               <TabsContent value="mines-pont">
                 <ScoreCalculator 
                   exams={MINES_PONTS_EXAMS} 
-                  title="Concours Mines Pont" 
+                  title="Concours Commun Mines Ponts" 
                   bonusPoints={30} 
                   bonusLabel="3/2 (+30 points)"
                   hasBonus={true} 
