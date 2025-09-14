@@ -23,10 +23,22 @@ export default function Home() {
                 <TabsTrigger value="concours-centrale">Concours Centrale</TabsTrigger>
               </TabsList>
               <TabsContent value="mines-pont">
-                <ScoreCalculator exams={MINES_PONTS_EXAMS} title="Concours Mines Pont" />
+                <ScoreCalculator 
+                  exams={MINES_PONTS_EXAMS} 
+                  title="Concours Mines Pont" 
+                  bonusPoints={30} 
+                  bonusLabel="3/2 (+30 points)"
+                  hasBonus={true} 
+                />
               </TabsContent>
               <TabsContent value="concours-centrale">
-                <ScoreCalculator exams={CENTRALE_EXAMS} title="Concours Centrale" />
+                <ScoreCalculator 
+                  exams={CENTRALE_EXAMS} 
+                  title="Concours Centrale" 
+                  bonusPoints={80} 
+                  bonusLabel="3/2 (+80 points)"
+                  hasBonus={true}
+                />
               </TabsContent>
             </Tabs>
           </div>

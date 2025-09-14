@@ -12,9 +12,12 @@ import type { Exam } from '@/lib/constants';
 type ScoreCalculatorProps = {
   exams: Exam[];
   title: string;
+  bonusPoints: number;
+  bonusLabel: string;
+  hasBonus: boolean;
 };
 
-export function ScoreCalculator({ exams, title }: ScoreCalculatorProps) {
+export function ScoreCalculator({ exams, title, bonusPoints, bonusLabel, hasBonus }: ScoreCalculatorProps) {
   const [scores, setScores] = React.useState<Record<string, string>>({});
   const [bonusOption, setBonusOption] = React.useState<'3/2' | '5/2'>('3/2');
 
@@ -36,9 +39,9 @@ export function ScoreCalculator({ exams, title }: ScoreCalculatorProps) {
       return acc;
     }, 0);
 
-    const bonus = bonusOption === '3/2' ? 30 : 0;
+    const bonus = hasBonus && bonusOption === '3/2' ? bonusPoints : 0;
     return baseScore + bonus;
-  }, [scores, bonusOption, exams]);
+  }, [scores, bonusOption, exams, hasBonus, bonusPoints]);
 
   return (
     <Card className="shadow-lg hover:shadow-xl transition-shadow duration-300 mt-4">
@@ -70,24 +73,28 @@ export function ScoreCalculator({ exams, title }: ScoreCalculatorProps) {
               </p>
             </div>
           ))}
-          <Separator />
-            <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-4 pt-4">
-               <Label className="font-medium">Bonus</Label>
-                 <RadioGroup
-                    defaultValue="3/2"
-                    onValueChange={(value: '3/2' | '5/2') => setBonusOption(value)}
-                    className="flex items-center space-x-4"
-                    >
-                    <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="3/2" id="r2" />
-                        <Label htmlFor="r2">3/2 (+30 points)</Label>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="5/2" id="r3" />
-                        <Label htmlFor="r3">5/2</Label>
-                    </div>
+          {hasBonus && (
+            <>
+              <Separator />
+              <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-4 pt-4">
+                <Label className="font-medium">Bonus</Label>
+                <RadioGroup
+                  defaultValue="3/2"
+                  onValueChange={(value: '3/2' | '5/2') => setBonusOption(value)}
+                  className="flex items-center space-x-4"
+                >
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="3/2" id={`r2-${title}`} />
+                    <Label htmlFor={`r2-${title}`}>{bonusLabel}</Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="5/2" id={`r3-${title}`} />
+                    <Label htmlFor={`r3-${title}`}>5/2</Label>
+                  </div>
                 </RadioGroup>
-            </div>
+              </div>
+            </>
+          )}
         </div>
       </CardContent>
       <Separator className="my-0" />
