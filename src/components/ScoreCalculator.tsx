@@ -7,9 +7,11 @@ import { Label } from '@/components/ui/label';
 import { EXAMS } from '@/lib/constants';
 import { TotalScore } from '@/components/TotalScore';
 import { Separator } from './ui/separator';
+import { RadioGroup, RadioGroupItem } from './ui/radio-group';
 
 export function ScoreCalculator() {
   const [scores, setScores] = React.useState<Record<string, string>>({});
+  const [bonusOption, setBonusOption] = React.useState<'3/2' | '5/2'>('3/2');
 
   const handleScoreChange = (examId: string, value: string) => {
     const numericValue = value.replace(/[^0-9.]/g, '');
@@ -20,7 +22,7 @@ export function ScoreCalculator() {
   };
 
   const calculatedScore = React.useMemo(() => {
-    return EXAMS.reduce((acc, exam) => {
+    const baseScore = EXAMS.reduce((acc, exam) => {
       const scoreStr = scores[exam.id];
       const score = parseFloat(scoreStr);
       if (!isNaN(score) && score >= 0 && score <= 20) {
@@ -28,7 +30,10 @@ export function ScoreCalculator() {
       }
       return acc;
     }, 0);
-  }, [scores]);
+
+    const bonus = bonusOption === '3/2' ? 30 : 0;
+    return baseScore + bonus;
+  }, [scores, bonusOption]);
 
   return (
     <Card className="shadow-lg hover:shadow-xl transition-shadow duration-300">
@@ -60,6 +65,24 @@ export function ScoreCalculator() {
               </p>
             </div>
           ))}
+          <Separator />
+            <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-4 pt-4">
+               <Label className="font-medium">Bonus</Label>
+                 <RadioGroup
+                    defaultValue="3/2"
+                    onValueChange={(value: '3/2' | '5/2') => setBonusOption(value)}
+                    className="flex items-center space-x-4"
+                    >
+                    <div className="flex items-center space-x-2">
+                        <RadioGroupItem value="3/2" id="r2" />
+                        <Label htmlFor="r2">3/2 (+30 points)</Label>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                        <RadioGroupItem value="5/2" id="r3" />
+                        <Label htmlFor="r3">5/2</Label>
+                    </div>
+                </RadioGroup>
+            </div>
         </div>
       </CardContent>
       <Separator className="my-0" />
