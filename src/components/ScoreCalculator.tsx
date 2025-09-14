@@ -4,7 +4,6 @@ import * as React from 'react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Badge } from '@/components/ui/badge';
 import { EXAMS } from '@/lib/constants';
 import { TotalScore } from '@/components/TotalScore';
 import { Separator } from './ui/separator';
@@ -31,25 +30,11 @@ export function ScoreCalculator() {
     }, 0);
   }, [scores]);
 
-  const totalCoefficient = React.useMemo(() => {
-    return EXAMS.reduce((acc, exam) => {
-       const scoreStr = scores[exam.id];
-      const score = parseFloat(scoreStr);
-      if (!isNaN(score) && score >= 0 && score <= 20) {
-        return acc + exam.coefficient;
-      }
-      return acc;
-    }, 0);
-  }, [scores]);
-
-  const averageScore = totalCoefficient > 0 ? calculatedScore / totalCoefficient : 0;
-
-
   return (
     <Card className="shadow-lg hover:shadow-xl transition-shadow duration-300">
       <CardHeader>
         <CardTitle className="text-2xl font-bold">Calculateur de Notes</CardTitle>
-        <CardDescription>Entrez vos notes pour voir votre moyenne pondérée.</CardDescription>
+        <CardDescription>Entrez vos notes pour voir votre score total.</CardDescription>
       </CardHeader>
       <CardContent>
         <div className="space-y-6">
@@ -79,7 +64,7 @@ export function ScoreCalculator() {
       </CardContent>
       <Separator className="my-0" />
       <CardFooter className="pt-6">
-        <TotalScore score={averageScore} />
+        <TotalScore score={calculatedScore} />
       </CardFooter>
     </Card>
   );
