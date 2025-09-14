@@ -4,12 +4,17 @@ import * as React from 'react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { EXAMS } from '@/lib/constants';
 import { TotalScore } from '@/components/TotalScore';
 import { Separator } from './ui/separator';
 import { RadioGroup, RadioGroupItem } from './ui/radio-group';
+import type { Exam } from '@/lib/constants';
 
-export function ScoreCalculator() {
+type ScoreCalculatorProps = {
+  exams: Exam[];
+  title: string;
+};
+
+export function ScoreCalculator({ exams, title }: ScoreCalculatorProps) {
   const [scores, setScores] = React.useState<Record<string, string>>({});
   const [bonusOption, setBonusOption] = React.useState<'3/2' | '5/2'>('3/2');
 
@@ -22,7 +27,7 @@ export function ScoreCalculator() {
   };
 
   const calculatedScore = React.useMemo(() => {
-    const baseScore = EXAMS.reduce((acc, exam) => {
+    const baseScore = exams.reduce((acc, exam) => {
       const scoreStr = scores[exam.id];
       const score = parseFloat(scoreStr);
       if (!isNaN(score) && score >= 0 && score <= 20) {
@@ -33,17 +38,17 @@ export function ScoreCalculator() {
 
     const bonus = bonusOption === '3/2' ? 30 : 0;
     return baseScore + bonus;
-  }, [scores, bonusOption]);
+  }, [scores, bonusOption, exams]);
 
   return (
-    <Card className="shadow-lg hover:shadow-xl transition-shadow duration-300">
+    <Card className="shadow-lg hover:shadow-xl transition-shadow duration-300 mt-4">
       <CardHeader>
-        <CardTitle className="text-2xl font-bold">Calculateur de Notes</CardTitle>
+        <CardTitle className="text-2xl font-bold">{title}</CardTitle>
         <CardDescription>Entrez vos notes pour voir votre score total.</CardDescription>
       </CardHeader>
       <CardContent>
         <div className="space-y-6">
-          {EXAMS.map((exam) => (
+          {exams.map((exam) => (
             <div key={exam.id} className="grid grid-cols-1 md:grid-cols-6 items-center gap-4">
               <Label htmlFor={exam.id} className="md:col-span-4 font-medium flex items-center">
                 {exam.name}
