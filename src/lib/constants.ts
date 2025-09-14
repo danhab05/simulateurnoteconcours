@@ -1,15 +1,17 @@
 export type Exam = {
   id: string;
   name: string;
-  weight: number;
-  isPotentiallyOptional: boolean;
+  coefficient: number;
 };
 
-// These weights for non-optional exams add up to 1.0.
 export const EXAMS: Exam[] = [
-  { id: 'midterm1', name: 'Midterm Exam 1', weight: 0.25, isPotentiallyOptional: false },
-  { id: 'midterm2', name: 'Midterm Exam 2', weight: 0.25, isPotentiallyOptional: false },
-  { id: 'final', name: 'Final Exam', weight: 0.35, isPotentiallyOptional: false },
-  { id: 'project', name: 'Class Project', weight: 0.15, isPotentiallyOptional: false },
-  { id: 'extra_credit', name: 'Extra Credit', weight: 0.05, isPotentiallyOptional: true },
+  { id: 'math1', name: 'Première épreuve de Mathématiques', coefficient: 4 },
+  { id: 'math2', name: 'Deuxième épreuve de Mathématiques', coefficient: 5 },
+  { id: 'phys1', name: 'Première épreuve de Physique', coefficient: 3 },
+  { id: 'phys2', name: 'Deuxième épreuve de Physique', coefficient: 4 },
+  { id: 'chimie', name: 'Épreuve de Chimie', coefficient: 2 },
+  { id: 'option', name: 'Épreuve d\'option MP Informatique ou S.I.', coefficient: 2 },
+  { id: 'info_commun', name: 'Épreuve d\'Informatique commune MP, PC, PSI', coefficient: 2 },
+  { id: 'francais', name: 'Épreuve de Français', coefficient: 5 },
+  { id: 'langue', name: 'Épreuve de Langue vivante', coefficient: 3 },
 ];

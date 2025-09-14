@@ -24,45 +24,54 @@ export function ScoreCalculator() {
     return EXAMS.reduce((acc, exam) => {
       const scoreStr = scores[exam.id];
       const score = parseFloat(scoreStr);
-      if (!isNaN(score) && score >= 0 && score <= 100) {
-        return acc + score * exam.weight;
+      if (!isNaN(score) && score >= 0 && score <= 20) {
+        return acc + score * exam.coefficient;
       }
       return acc;
     }, 0);
   }, [scores]);
 
+  const totalCoefficient = React.useMemo(() => {
+    return EXAMS.reduce((acc, exam) => {
+       const scoreStr = scores[exam.id];
+      const score = parseFloat(scoreStr);
+      if (!isNaN(score) && score >= 0 && score <= 20) {
+        return acc + exam.coefficient;
+      }
+      return acc;
+    }, 0);
+  }, [scores]);
+
+  const averageScore = totalCoefficient > 0 ? calculatedScore / totalCoefficient : 0;
+
+
   return (
     <Card className="shadow-lg hover:shadow-xl transition-shadow duration-300">
       <CardHeader>
-        <CardTitle className="text-2xl font-bold">Score Calculator</CardTitle>
-        <CardDescription>Enter your exam scores to see your accumulated points.</CardDescription>
+        <CardTitle className="text-2xl font-bold">Calculateur de Notes</CardTitle>
+        <CardDescription>Entrez vos notes pour voir votre moyenne pondérée.</CardDescription>
       </CardHeader>
       <CardContent>
         <div className="space-y-6">
           {EXAMS.map((exam) => (
             <div key={exam.id} className="grid grid-cols-1 md:grid-cols-6 items-center gap-4">
-              <Label htmlFor={exam.id} className="md:col-span-3 font-medium flex items-center">
+              <Label htmlFor={exam.id} className="md:col-span-4 font-medium flex items-center">
                 {exam.name}
-                {exam.isPotentiallyOptional && (
-                  <Badge variant="outline" className="ml-2 border-accent text-accent">
-                    Optional
-                  </Badge>
-                )}
               </Label>
-              <div className="md:col-span-2">
+              <div className="md:col-span-1">
                 <Input
                   id={exam.id}
                   type="number"
-                  placeholder="0-100"
+                  placeholder="0-20"
                   min="0"
-                  max="100"
+                  max="20"
                   value={scores[exam.id] || ''}
                   onChange={(e) => handleScoreChange(exam.id, e.target.value)}
                   className="w-full text-center"
                 />
               </div>
               <p className="md:col-span-1 text-sm text-muted-foreground text-left md:text-right">
-                ({exam.weight * 100}%)
+                (Coeff. {exam.coefficient})
               </p>
             </div>
           ))}
@@ -70,7 +79,7 @@ export function ScoreCalculator() {
       </CardContent>
       <Separator className="my-0" />
       <CardFooter className="pt-6">
-        <TotalScore score={calculatedScore} />
+        <TotalScore score={averageScore} />
       </CardFooter>
     </Card>
   );
