@@ -1,10 +1,14 @@
 import { ScoreCalculator } from '@/components/ScoreCalculator';
+import { ThemeToggle } from '@/components/ThemeToggle';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { MINES_PONTS_EXAMS, CENTRALE_EXAMS } from '@/lib/constants';
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <div className="absolute top-4 right-4">
+        <ThemeToggle />
+      </div>
       <main className="container mx-auto p-4 sm:p-6 lg:p-8">
         <header className="text-center mb-10">
           <h1 className="text-4xl md:text-5xl font-headline font-black text-primary animate-fade-in-down">
