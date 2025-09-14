@@ -44,7 +44,7 @@ export default function Home() {
           </div>
         </div>
         <footer className="text-center mt-12 text-sm text-muted-foreground">
-          <p>&copy; {new Date().getFullYear()} Calculateur de Notes. Tous droits réservés.</p>
+          <p>&copy; {new Date().getFullYear()} Habib Dan. Tous droits réservés.</p>
         </footer>
       </main>
     </div>
