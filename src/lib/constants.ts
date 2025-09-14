@@ -17,13 +17,11 @@ export const MINES_PONTS_EXAMS: Exam[] = [
 ];
 
 export const CENTRALE_EXAMS: Exam[] = [
-  { id: 'centrale_math1', name: 'Première épreuve de Mathématiques', coefficient: 4 },
-  { id: 'centrale_math2', name: 'Deuxième épreuve de Mathématiques', coefficient: 5 },
-  { id: 'centrale_phys1', name: 'Première épreuve de Physique', coefficient: 3 },
-  { id: 'centrale_phys2', name: 'Deuxième épreuve de Physique', coefficient: 4 },
-  { id: 'centrale_chimie', name: 'Épreuve de Chimie', coefficient: 2 },
-  { id: 'centrale_option', name: 'Épreuve d\'option MP Informatique ou S.I.', coefficient: 2 },
-  { id: 'centrale_info_commun', name: 'Épreuve d\'Informatique commune MP, PC, PSI', coefficient: 2 },
-  { id: 'centrale_francais', name: 'Épreuve de Français', coefficient: 5 },
-  { id: 'centrale_langue', name: 'Épreuve de Langue vivante', coefficient: 3 },
+  { id: 'centrale_math1', name: 'Mathématiques 1', coefficient: 19 },
+  { id: 'centrale_math2', name: 'Mathématiques 2', coefficient: 19 },
+  { id: 'centrale_phys_chimie1', name: 'Physique-chimie 1', coefficient: 12 },
+  { id: 'centrale_phys_chimie2', name: 'Physique-chimie 2', coefficient: 12 },
+  { id: 'centrale_s2i_info', name: 'S2I ou Informatique', coefficient: 10 },
+  { id: 'centrale_redaction', name: 'Rédaction', coefficient: 17 },
+  { id: 'centrale_langue', name: 'Langue vivante', coefficient: 11 },
 ];
