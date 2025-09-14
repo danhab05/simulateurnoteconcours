@@ -18,8 +18,32 @@ type ScoreCalculatorProps = {
 };
 
 export function ScoreCalculator({ exams, title, bonusPoints, bonusLabel, hasBonus }: ScoreCalculatorProps) {
-  const [scores, setScores] = React.useState<Record<string, string>>({});
-  const [bonusOption, setBonusOption] = React.useState<'3/2' | '5/2'>('3/2');
+  const storageKeyScores = `scores_${title.replace(/\s/g, '_')}`;
+  const storageKeyBonus = `bonus_${title.replace(/\s/g, '_')}`;
+
+  const [scores, setScores] = React.useState<Record<string, string>>(() => {
+    if (typeof window !== 'undefined') {
+      const savedScores = localStorage.getItem(storageKeyScores);
+      return savedScores ? JSON.parse(savedScores) : {};
+    }
+    return {};
+  });
+
+  const [bonusOption, setBonusOption] = React.useState<'3/2' | '5/2'>(() => {
+    if (typeof window !== 'undefined') {
+      const savedBonus = localStorage.getItem(storageKeyBonus) as '3/2' | '5/2' | null;
+      return savedBonus || '3/2';
+    }
+    return '3/2';
+  });
+
+  React.useEffect(() => {
+    localStorage.setItem(storageKeyScores, JSON.stringify(scores));
+  }, [scores, storageKeyScores]);
+
+  React.useEffect(() => {
+    localStorage.setItem(storageKeyBonus, bonusOption);
+  }, [bonusOption, storageKeyBonus]);
 
   const handleScoreChange = (examId: string, value: string) => {
     const numericValue = value.replace(/[^0-9.]/g, '');
@@ -79,7 +103,7 @@ export function ScoreCalculator({ exams, title, bonusPoints, bonusLabel, hasBonu
               <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-4 pt-4">
                 <Label className="font-medium">Bonus</Label>
                 <RadioGroup
-                  defaultValue="3/2"
+                  value={bonusOption}
                   onValueChange={(value: '3/2' | '5/2') => setBonusOption(value)}
                   className="flex items-center space-x-4"
                 >
