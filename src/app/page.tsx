@@ -10,9 +10,6 @@ export default function Home() {
           <h1 className="text-4xl md:text-5xl font-headline font-black text-primary animate-fade-in-down">
             Simulateur de Notes de Concours
           </h1>
-          <p className="mt-2 text-lg text-muted-foreground max-w-2xl mx-auto animate-fade-in-up">
-            Estimez votre score et préparez-vous pour le succès.
-          </p>
         </header>
 
         <div className="flex justify-center">
