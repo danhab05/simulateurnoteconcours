@@ -1,7 +1,7 @@
 import { ScoreCalculator } from '@/components/ScoreCalculator';
 import { ThemeToggle } from '@/components/ThemeToggle';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { MINES_PONTS_EXAMS, CENTRALE_EXAMS } from '@/lib/constants';
+import { MINES_PONTS_EXAMS, CENTRALE_EXAMS, CONCOURS_X_EXAMS } from '@/lib/constants';
 
 export default function Home() {
   return (
@@ -19,9 +19,10 @@ export default function Home() {
         <div className="flex justify-center">
           <div className="w-full max-w-3xl">
             <Tabs defaultValue="mines-pont">
-              <TabsList className="grid w-full grid-cols-2">
-                <TabsTrigger value="mines-pont">Concours Commun Mines Ponts</TabsTrigger>
-                <TabsTrigger value="concours-centrale">Concours Centrale</TabsTrigger>
+              <TabsList className="grid w-full grid-cols-3">
+                <TabsTrigger value="mines-pont">Mines Ponts</TabsTrigger>
+                <TabsTrigger value="concours-centrale">Centrale</TabsTrigger>
+                <TabsTrigger value="concours-x">École Polytechnique (X)</TabsTrigger>
               </TabsList>
               <TabsContent value="mines-pont">
                 <ScoreCalculator 
@@ -38,6 +39,15 @@ export default function Home() {
                   title="Concours Centrale" 
                   bonusPoints={80} 
                   bonusLabel="3/2 (+80 points)"
+                  hasBonus={true}
+                />
+              </TabsContent>
+              <TabsContent value="concours-x">
+                <ScoreCalculator 
+                  exams={CONCOURS_X_EXAMS} 
+                  title="Concours X (École Polytechnique)" 
+                  bonusPoints={54} 
+                  bonusLabel="3/2 (+54 points)"
                   hasBonus={true}
                 />
               </TabsContent>

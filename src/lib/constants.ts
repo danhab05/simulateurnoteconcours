@@ -25,3 +25,15 @@ export const CENTRALE_EXAMS: Exam[] = [
   { id: 'centrale_redaction', name: 'Rédaction', coefficient: 17 },
   { id: 'centrale_langue', name: 'Langue vivante', coefficient: 11 },
 ];
+
+export const CONCOURS_X_EXAMS: Exam[] = [
+  { id: 'x_math1', name: 'Mathématiques 1', coefficient: 12 },
+  { id: 'x_math2', name: 'Mathématiques 2', coefficient: 12 },
+  { id: 'x_physique', name: 'Physique', coefficient: 8 },
+  { id: 'x_chimie', name: 'Chimie', coefficient: 4 },
+  { id: 'x_option_info_si', name: 'Option Informatique ou S.I.', coefficient: 8 },
+  { id: 'x_francais', name: 'Français-Philosophie', coefficient: 6 },
+  { id: 'x_langue', name: 'Langue vivante', coefficient: 4 },
+];
+
+// Copyright 2025 Habib Dan
