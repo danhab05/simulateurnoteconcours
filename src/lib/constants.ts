@@ -30,9 +30,9 @@ export const CONCOURS_X_EXAMS: Exam[] = [
   { id: 'x_math1', name: 'Première épreuve de mathématiques', coefficient: 8 },
   { id: 'x_math2', name: 'Deuxième épreuve de mathématiques', coefficient: 7 },
   { id: 'x_physique1', name: 'Première épreuve de physique', coefficient: 6 },
-  { id: 'x_sciences_industrielles', name: 'Épreuve de sciences industrielles', coefficient: 6 },
-  { id: 'x_francais', name: 'Épreuve de français', coefficient: 6 },
-  { id: 'x_langue', name: 'Épreuve de LV', coefficient: 6 },
+  { id: 'x_sciences_industrielles', name: 'Epreuve de sciences industrielles', coefficient: 6 },
+  { id: 'x_francais', name: 'Epreuve de français', coefficient: 6 },
+  { id: 'x_langue', name: 'Epreuve de LV', coefficient: 6 },
 ];
 
 // Copyright 2025 Habib Dan
